@@ -1,0 +1,33 @@
+﻿@model IEnumerable<labRecurso.Models.PerfilJogos>
+
+@{
+    ViewData["Title"] = "Lista de jogos comprados";
+}
+
+<h1>Lista de jogos comprados</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.jogo.Foto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.jogo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                    <img src="/Fotos/Jogos/@item.jogo.Foto" class="game-picture row" height="130" width="100" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.jogo.Nome)
+            </td>       
+        </tr>
+}
+    </tbody>
+</table>

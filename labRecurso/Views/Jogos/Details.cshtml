@@ -1,0 +1,96 @@
+﻿@model labRecurso.Models.Jogos
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h1>Detalhes</h1>
+
+
+
+<div>
+    <h4>Jogos</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Foto)
+        </dt>
+        <dd class = "col-sm-10">
+            <img src="/Fotos/Jogos/@Model.Foto" class="game-picture row" height="130" width="100" />
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Preco)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Preco)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.plataforma)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.plataforma.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Pontuacao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Pontuacao)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.categoria)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.categoria.Nome)
+        </dd>
+    </dl>
+</div>
+@if (User.Identity.IsAuthenticated)
+{
+    <a asp-action="Comentar" class="btn btn-primary" asp-controller="Comentarios" asp-route-id="@Model.Id">Escrever Comentario</a>
+    <a asp-action="Avaliar" class="btn btn-primary" asp-controller="Avalicaos" asp-route-id="@Model.Id">Avaliar jogo</a>
+    <a asp-action="Comprar" class="btn btn-primary" asp-controller="PerfilJogos" asp-route-id="@Model.Id">Comprar</a>
+    @if (User.IsInRole("Admin") || User.IsInRole("Funcionario"))
+    {
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </form>
+    }
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Autores
+            </th>
+            <th>
+                Comentario
+            </th>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Comentarios)
+        {
+            <tr>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Message)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Editar</a> |
+    <a asp-action="Index">Voltar</a>
+</div>

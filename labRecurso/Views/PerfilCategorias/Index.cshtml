@@ -1,0 +1,34 @@
+﻿@model IEnumerable<labRecurso.Models.PerfilCategoria>
+
+@{
+    ViewData["Title"] = "Lista de Categorias";
+}
+
+<h1>Lista de Categorias</h1>
+
+<p>
+    <a asp-action="Create">Adicionar Categoria</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Categoria)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria.Nome)
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.Id">Apagar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,39 @@
+﻿@model List<UsersRolesViewModel>
+
+@{
+    ViewData["Title"] = "Lista de utilizadores";
+}
+
+<h1>Lista de utilizadores</h1>
+@if (User.IsInRole("Admin"))
+{
+   // <a asp-action="Create" asp-controller="Perfils">Criar Utilizador</a>
+}
+
+
+<table class="table">
+<thead>
+    <tr>
+        <th>
+            Email
+        </th>
+        <th>
+            Cargo
+        </th>
+        <th></th>
+    </tr>
+</thead>
+<tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Email</td>
+            <td>@item.Role</td>
+
+            <td>
+                <a asp-action="Edit" class="btn btn-primary" asp-controller="Perfils" asp-route-id="@item.Id">Editar</a>
+            </td>
+        </tr>
+    }
+</tbody>
+</table>

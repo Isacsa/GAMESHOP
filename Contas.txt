@@ -1,0 +1,10 @@
+Gmail:
+edisangogamestore@gmail.com
+Pr0jetoL@b.23
+
+SendGrid:
+edisangogamestore@gmail.com
+Pr0jetoL@boratorio.23
+
+API Key: MailSend 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
+set SENDGRID_API_KEY=[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]
